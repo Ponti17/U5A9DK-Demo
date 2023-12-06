@@ -1,0 +1,183 @@
+{
+  "Application": {
+    "Screens": [
+      {
+        "Name": "Screen1_Rocket",
+        "CanvasBufferSize": 7200,
+        "Components": [
+          {
+            "Type": "Box",
+            "Name": "box1",
+            "Width": 480,
+            "Height": 480
+          },
+          {
+            "Type": "Image",
+            "Name": "pillars_of_creation",
+            "X": -480,
+            "Y": -160,
+            "Width": 960,
+            "Height": 800,
+            "RelativeFilename": "pillars_of_creation_large.png",
+            "Alpha": 200
+          },
+          {
+            "Type": "SvgImage",
+            "Name": "rocket",
+            "X": 364,
+            "Width": 497,
+            "Height": 480,
+            "Image": "rocket2.svg",
+            "LockToCenter": true,
+            "ImagePositionX": 152.5,
+            "ImagePositionY": 144.0,
+            "ImageHorizontalScale": 3.0,
+            "ImageVerticalScale": 3.0,
+            "RotationCenterX": 248.5,
+            "RotationCenterY": 240.0,
+            "RotationDegrees": -135.0
+          }
+        ],
+        "Interactions": [
+          {
+            "InteractionName": "MoveBackground",
+            "Trigger": {
+              "Type": "TriggerOnEveryTick",
+              "TickCount": 3
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "moveBackground"
+            }
+          },
+          {
+            "InteractionName": "rocketMovement",
+            "Trigger": {
+              "Type": "TriggerOnEveryTick",
+              "TickCount": 1
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "flyRocket"
+            }
+          }
+        ]
+      },
+      {
+        "Name": "Screen2_Roulette",
+        "Components": [
+          {
+            "Type": "Box",
+            "Name": "box1",
+            "Width": 480,
+            "Height": 480
+          },
+          {
+            "Type": "TextureMapper",
+            "Name": "roulette_inner",
+            "Width": 480,
+            "Height": 480,
+            "RenderingAlgorithm": "Nearest-neighbor",
+            "FileNameImage": "roulette_inner2.png",
+            "LockBitmapToCenter": true,
+            "Scale": 1.0,
+            "LockOrigoToCenter": true,
+            "XOrigo": 240.0,
+            "YOrigo": 240.0,
+            "ZOrigo": 1000.0,
+            "CameraDistance": 1000.0
+          },
+          {
+            "Type": "Image",
+            "Name": "roulette_outer",
+            "Width": 480,
+            "Height": 480,
+            "RelativeFilename": "roulette_outer.png"
+          },
+          {
+            "Type": "TextureMapper",
+            "Name": "roulette_ball",
+            "Width": 480,
+            "Height": 480,
+            "RenderingAlgorithm": "Nearest-neighbor",
+            "FileNameImage": "roulette_ball2.png",
+            "LockBitmapToCenter": true,
+            "Scale": 1.3,
+            "LockOrigoToCenter": true,
+            "XOrigo": 240.0,
+            "YOrigo": 240.0,
+            "ZOrigo": 1000.0,
+            "CameraDistance": 1000.0
+          }
+        ],
+        "Interactions": [
+          {
+            "InteractionName": "roulette_rotation",
+            "Trigger": {
+              "Type": "TriggerOnEveryTick",
+              "TickCount": 1
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "rotateRoulette"
+            }
+          }
+        ]
+      }
+    ],
+    "CustomContainerDefinitions": [],
+    "Name": "U5A9J-DK_Demo",
+    "Resolution": {
+      "Width": 480,
+      "Height": 480
+    },
+    "SelectedColorDepth": 24,
+    "StartupScreenName": "Screen2_Roulette",
+    "SelectedStartupLanguage": "GB",
+    "TouchGfxPath": "../Middlewares/ST/touchgfx",
+    "UIPath": ".",
+    "AvailableColorDepths": [
+      24
+    ],
+    "AvailableLCDs": {
+      "24": "LCDGPU2D"
+    },
+    "AvailableSections": [
+      "ExtFlashSection",
+      "IntFlashSection"
+    ],
+    "AvailableResolutions": [
+      {
+        "Width": 480,
+        "Height": 480
+      }
+    ],
+    "PhysicalButtons": [],
+    "GenerateAssetsCommand": "make -f simulator/gcc/Makefile assets -j8",
+    "PostGenerateCommand": "touchgfx update_project --project-file=simulator/msvs/Application.vcxproj",
+    "PostGenerateTargetCommand": "touchgfx update_project",
+    "CompileSimulatorCommand": "make -f simulator/gcc/Makefile -j8",
+    "RunSimulatorCommand": "build\\bin\\simulator.exe",
+    "CompileTargetCommand": "make -f ../gcc/Makefile -j8",
+    "FlashTargetCommand": "make -f ../gcc/Makefile flash",
+    "LandscapeSkinX": 0,
+    "LandscapeSkinY": 0,
+    "PortraitSkinX": 0,
+    "PortraitSkinY": 0,
+    "DisplayOrientation": "Landscape",
+    "Family": "STM32U5",
+    "SubFamily": "STM32U599/5A9",
+    "Toolchain": "STM32CubeIDE",
+    "Platform": "m33",
+    "ProjectFile": "../STM32U5A9J-DK.ioc",
+    "OptionalComponentsRoot": "../Middlewares/ST/touchgfx_components",
+    "OptionalComponents": [
+      "GPU2D"
+    ],
+    "AdditionalFeatures": [
+      "Vector"
+    ]
+  },
+  "Version": "4.22.1",
+  "CreatedBy": "4.22.1"
+}
