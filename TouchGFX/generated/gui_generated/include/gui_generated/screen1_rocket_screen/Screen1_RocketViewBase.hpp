@@ -57,6 +57,8 @@ private:
      */
     static const uint32_t TICK_MOVEBACKGROUND_INTERVAL = 3;
     uint32_t frameCountMoveBackgroundInterval;
+    static const uint32_t TICK_SCREEN1_TO_SCREEN2_INTERVAL = 1000;
+    uint32_t frameCountScreen1_to_Screen2Interval;
 
 };
 

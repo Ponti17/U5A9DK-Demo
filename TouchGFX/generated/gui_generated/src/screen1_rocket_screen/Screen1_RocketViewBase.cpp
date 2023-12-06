@@ -8,7 +8,8 @@
 #include<images/SVGDatabase.hpp>
 
 Screen1_RocketViewBase::Screen1_RocketViewBase() :
-    frameCountMoveBackgroundInterval(0)
+    frameCountMoveBackgroundInterval(0),
+    frameCountScreen1_to_Screen2Interval(0)
 {
     touchgfx::CanvasWidgetRenderer::setupBuffer(canvasBuffer, CANVAS_BUFFER_SIZE);
     
@@ -22,13 +23,12 @@ Screen1_RocketViewBase::Screen1_RocketViewBase() :
 
     pillars_of_creation.setXY(-480, -160);
     pillars_of_creation.setBitmap(touchgfx::Bitmap(BITMAP_PILLARS_OF_CREATION_LARGE_ID));
-    pillars_of_creation.setAlpha(200);
     add(pillars_of_creation);
 
     rocket.setSVG(SVG_ROCKET2_ID);
-    rocket.setPosition(364, 0, 497, 480);
-    rocket.setScale(3.0f, 3.0f);
-    rocket.setImagePosition(152.5f, 144.0f);
+    rocket.setPosition(481, -140, 497, 480);
+    rocket.setScale(6.0f, 6.0f);
+    rocket.setImagePosition(56.5f, 48.0f);
     rocket.setRotationCenter(248.5f, 240.0f);
     rocket.setRotation(-135.0f);
     add(rocket);
@@ -60,4 +60,14 @@ void Screen1_RocketViewBase::handleTickEvent()
     //When every N tick call virtual function
     //Call flyRocket
     flyRocket();
+
+    frameCountScreen1_to_Screen2Interval++;
+    if(frameCountScreen1_to_Screen2Interval == TICK_SCREEN1_TO_SCREEN2_INTERVAL)
+    {
+        //Screen1_to_Screen2
+        //When every N tick change screen to Screen2_Roulette
+        //Go to Screen2_Roulette with screen transition towards East
+        application().gotoScreen2_RouletteScreenSlideTransitionEast();
+        frameCountScreen1_to_Screen2Interval = 0;
+    }
 }

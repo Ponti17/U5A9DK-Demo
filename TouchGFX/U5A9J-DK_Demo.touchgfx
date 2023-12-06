@@ -18,21 +18,21 @@
             "Y": -160,
             "Width": 960,
             "Height": 800,
-            "RelativeFilename": "pillars_of_creation_large.png",
-            "Alpha": 200
+            "RelativeFilename": "pillars_of_creation_large.png"
           },
           {
             "Type": "SvgImage",
             "Name": "rocket",
-            "X": 364,
+            "X": 481,
+            "Y": -140,
             "Width": 497,
             "Height": 480,
             "Image": "rocket2.svg",
             "LockToCenter": true,
-            "ImagePositionX": 152.5,
-            "ImagePositionY": 144.0,
-            "ImageHorizontalScale": 3.0,
-            "ImageVerticalScale": 3.0,
+            "ImagePositionX": 56.5,
+            "ImagePositionY": 48.0,
+            "ImageHorizontalScale": 6.0,
+            "ImageVerticalScale": 6.0,
             "RotationCenterX": 248.5,
             "RotationCenterY": 240.0,
             "RotationDegrees": -135.0
@@ -52,6 +52,7 @@
           },
           {
             "InteractionName": "rocketMovement",
+            "HasCompletedTrigger": true,
             "Trigger": {
               "Type": "TriggerOnEveryTick",
               "TickCount": 1
@@ -59,6 +60,19 @@
             "Action": {
               "Type": "ActionCustom",
               "FunctionName": "flyRocket"
+            }
+          },
+          {
+            "InteractionName": "Screen1_to_Screen2",
+            "Trigger": {
+              "Type": "TriggerOnEveryTick",
+              "TickCount": 1000
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionSlide",
+              "ScreenTransitionDirection": "East",
+              "ActionComponent": "Screen2_Roulette"
             }
           }
         ]
@@ -132,7 +146,7 @@
       "Height": 480
     },
     "SelectedColorDepth": 24,
-    "StartupScreenName": "Screen2_Roulette",
+    "StartupScreenName": "Screen1_Rocket",
     "SelectedStartupLanguage": "GB",
     "TouchGfxPath": "../Middlewares/ST/touchgfx",
     "UIPath": ".",

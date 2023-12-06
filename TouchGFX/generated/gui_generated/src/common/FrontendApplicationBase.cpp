@@ -35,15 +35,28 @@ FrontendApplicationBase::FrontendApplicationBase(Model& m, FrontendHeap& heap)
  * Screen Transition Declarations
  */
 
-// Screen2_Roulette
+// Screen1_Rocket
 
-void FrontendApplicationBase::gotoScreen2_RouletteScreenNoTransition()
+void FrontendApplicationBase::gotoScreen1_RocketScreenNoTransition()
 {
-    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoScreen2_RouletteScreenNoTransitionImpl);
+    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoScreen1_RocketScreenNoTransitionImpl);
     pendingScreenTransitionCallback = &transitionCallback;
 }
 
-void FrontendApplicationBase::gotoScreen2_RouletteScreenNoTransitionImpl()
+void FrontendApplicationBase::gotoScreen1_RocketScreenNoTransitionImpl()
 {
-    touchgfx::makeTransition<Screen2_RouletteView, Screen2_RoulettePresenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+    touchgfx::makeTransition<Screen1_RocketView, Screen1_RocketPresenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+}
+
+// Screen2_Roulette
+
+void FrontendApplicationBase::gotoScreen2_RouletteScreenSlideTransitionEast()
+{
+    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoScreen2_RouletteScreenSlideTransitionEastImpl);
+    pendingScreenTransitionCallback = &transitionCallback;
+}
+
+void FrontendApplicationBase::gotoScreen2_RouletteScreenSlideTransitionEastImpl()
+{
+    touchgfx::makeTransition<Screen2_RouletteView, Screen2_RoulettePresenter, touchgfx::SlideTransition<EAST>, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
 }

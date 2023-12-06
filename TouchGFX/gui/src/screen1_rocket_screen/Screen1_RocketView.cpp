@@ -1,6 +1,7 @@
 #include <gui/screen1_rocket_screen/Screen1_RocketView.hpp>
 #include <touchgfx/utils.hpp>
 #include <images/BitmapDatabase.hpp>
+#include <math.h>
 
 Screen1_RocketView::Screen1_RocketView()
 {
@@ -17,9 +18,36 @@ void Screen1_RocketView::tearDownScreen()
     Screen1_RocketViewBase::tearDownScreen();
 }
 
+float Screen1_tickCount = 0;
+bool rocketFlyIn = true;
+bool rocketFlyOut = false;
 void Screen1_RocketView::flyRocket()
 {   
-    rocket.setXY(rocket.getX() - 1, rocket.getY());
+    if (rocketFlyIn) {
+        rocket.setScale(rocket.getScaleX() - 0.02, rocket.getScaleY() - 0.02);
+        rocket.setXY(rocket.getX() - 2, -140);
+        if (rocket.getScaleX() < 3) {
+            rocketFlyIn = false;
+        }
+    }
+    else if (rocketFlyOut) {
+        rocket.setScale(rocket.getScaleX() + 0.02, rocket.getScaleY() + 0.02);
+        rocket.setXY(rocket.getX() - 2, -140);
+    }
+
+    else {
+        if (int(Screen1_tickCount)%2 == 0) {
+        rocket.setXY(rocket.getX() - 1, -140 + 5*sin(Screen1_tickCount / 50));
+        rocket.setRotation(-135 + 2*sin(Screen1_tickCount / 50));
+        }
+
+        Screen1_tickCount += 1;
+
+        if (rocket.getX() < -150) {
+            rocketFlyOut = true;
+        }
+    }
+
     rocket.invalidate();
 }
 
